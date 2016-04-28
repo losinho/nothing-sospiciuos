@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+    <color name="sectitle">#ff888888</color>
+    <color name="red" >#ffff0000</color>
+
+</resources>

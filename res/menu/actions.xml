@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/size_1"
+        android:title="@string/size_1"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/size_2" android:title="@string/size_2"></item>
+    <item android:id="@+id/size_3" android:title="@string/size_3"></item>
+</menu>

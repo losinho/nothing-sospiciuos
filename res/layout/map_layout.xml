@@ -1,0 +1,62 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:divider="#511566"
+    android:shrinkColumns="0" >
+
+    <TableRow >
+
+        <TextView
+            android:id="@+id/textViewRadius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/RadiusText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_gravity="right" />
+
+        <EditText
+            android:id="@+id/editTextRadius"
+            android:layout_width="wrap_content"
+            android:ems="3"
+            android:inputType="numberDecimal"
+            android:text="@string/Radius" >
+             <requestFocus />
+
+        </EditText>
+        
+    </TableRow>
+
+        	 <TableRow>
+
+    	     <Button
+    	         android:id="@+id/button1"
+    	         android:layout_height="fill_parent"
+    	          android:layout_width="50dp"
+    	         android:text="@string/saveLocation"
+    	         android:onClick="saveLocation"
+    	         style="?android:attr/borderlessButtonStyle"
+    	           />
+    	     <Button
+    	         android:id="@+id/button2"
+    	          android:layout_weight="0.5"
+    	         android:layout_height="fill_parent"
+    	         android:text="@string/deleteLocation"
+    	         android:onClick="deleteLocation"
+    	         style="?android:attr/borderlessButtonStyle"
+    	           />
+
+         </TableRow>
+       
+        <TableRow>
+            <fragment
+        	 android:id="@+id/map"
+        	 android:layout_span="2"
+        	 android:layout_width="fill_parent"
+        	 android:layout_height="match_parent"
+        	 class="com.google.android.gms.maps.MapFragment" />
+         </TableRow>
+ 
+
+</TableLayout>
