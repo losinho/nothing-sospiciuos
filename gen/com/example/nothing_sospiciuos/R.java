@@ -575,10 +575,11 @@ containing a value of this type.
         public static final int icon36=0x7f020039;
         public static final int icon48=0x7f02003a;
         public static final int icon_launcher=0x7f02003b;
-        public static final int places_ic_clear=0x7f02003c;
-        public static final int places_ic_search=0x7f02003d;
-        public static final int powered_by_google_dark=0x7f02003e;
-        public static final int powered_by_google_light=0x7f02003f;
+        public static final int largeicon=0x7f02003c;
+        public static final int places_ic_clear=0x7f02003d;
+        public static final int places_ic_search=0x7f02003e;
+        public static final int powered_by_google_dark=0x7f02003f;
+        public static final int powered_by_google_light=0x7f020040;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f09002f;

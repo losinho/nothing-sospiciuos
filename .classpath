@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry excluding="com/example/nothing_sospiciuos/UpdateService.java|com/example/nothing_sospiciuos/ProximityIntentReceiver.java|com/example/nothing_sospiciuos/ProximityService.java" including="com/" kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Android/android-sdk/platforms/android-17/android.jar">
@@ -13,5 +13,6 @@
 			<accessrule kind="nonaccessible" pattern="com/android/internal/**"/>
 		</accessrules>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/google-play-services_lib/bin/google-play-services_lib.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

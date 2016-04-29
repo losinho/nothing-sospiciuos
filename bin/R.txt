@@ -154,10 +154,11 @@ int drawable icon24 0x7f020038
 int drawable icon36 0x7f020039
 int drawable icon48 0x7f02003a
 int drawable icon_launcher 0x7f02003b
-int drawable places_ic_clear 0x7f02003c
-int drawable places_ic_search 0x7f02003d
-int drawable powered_by_google_dark 0x7f02003e
-int drawable powered_by_google_light 0x7f02003f
+int drawable largeicon 0x7f02003c
+int drawable places_ic_clear 0x7f02003d
+int drawable places_ic_search 0x7f02003e
+int drawable powered_by_google_dark 0x7f02003f
+int drawable powered_by_google_light 0x7f020040
 int id LinearLayout1 0x7f09002f
 int id adjust_height 0x7f090007
 int id adjust_width 0x7f090008

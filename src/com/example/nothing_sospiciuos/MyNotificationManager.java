@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.TaskStackBuilder;
@@ -58,12 +59,13 @@ public class MyNotificationManager{
 	}
 	public void createNotification(Context context) {
 		setIcon_draw();
-		Bitmap largeIcon = BitmapFactory.decodeResource(context.getResources(), com.example.nothing_sospiciuos.R.drawable.icon48);
+		Bitmap largeIcon = BitmapFactory.decodeResource(context.getResources(),com.example.nothing_sospiciuos.R.drawable.largeicon);// .R.drawable.largeIcon);
         Notification noti = new Notification.Builder(context)
-        .setContentText("מופעל בהתאם למיקום.גרסה "+ getVersion())
+        .setContentText("מופעל בהתאם למיקום.גרסה " + getVersion())
         .setContentTitle("מערכת לכיבוי מצלמה")
-        .setLargeIcon(largeIcon)
-        .setWhen(System.currentTimeMillis()).getNotification();
+        //.setLargeIcon(largeIcon)
+        .setWhen(System.currentTimeMillis())
+        .build();
         noti.flags |= Notification.FLAG_NO_CLEAR;
         noti.flags |= Notification.FLAG_ONGOING_EVENT;
 
