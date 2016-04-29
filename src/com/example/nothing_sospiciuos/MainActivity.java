@@ -2,12 +2,8 @@ package com.example.nothing_sospiciuos;
 
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -27,15 +23,10 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.location.Geofence;
-import com.google.android.gms.location.LocationStatusCodes;
 
 
 
@@ -67,8 +58,7 @@ public class MainActivity extends Activity{
     MyNotificationManager notiManager;
     final Context context = MainActivity.this;
     public String versionMsg;
-	private Locations locations;
-//	private LocationClient loc_client;
+
     
 
     
@@ -148,9 +138,7 @@ public class MainActivity extends Activity{
         {
         	notiManager.clearNotification();
         }
-        
-/*        loc_client = new LocationClient (this,this,this);
-		loc_client.connect();*/
+
         
 	}
         	
@@ -366,68 +354,6 @@ public class MainActivity extends Activity{
         );
         ad.setMessage(msg);  
         ad.show();  
-	}
-
-
-
-	public void onAddGeofencesResult(int statusCode, String[] geofenceRequestIds) {
-		if (LocationStatusCodes.SUCCESS == statusCode) {
-			Log.i(tag, "geofences added succesfully");
-			//loc_client.disconnect();
-		}else{
-			Log.i(tag, "geofences added unsuccesfully");
-		}
-			
-		
-	}
-
-
-
-	public void onConnectionFailed(ConnectionResult result) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	public void onConnected(Bundle arg0) {
-		locations = new Locations(context,1);
-		List<Geofence> geofences = locationsToGeoFence(locations);
-		Log.d(tag, "list length = " + Integer.toString(geofences.size()));
-		if (geofences.size() > 0){
-			Intent loc_intent = new Intent(this,ReceiveTransitionsIntentService.class);
-			PendingIntent pendingIntenLocationt =  PendingIntent.getService(context, 0, loc_intent, PendingIntent.FLAG_UPDATE_CURRENT);
-			//loc_client.addGeofences(geofences, pendingIntenLocationt, this);
-		}
-		//loc_client.disconnect();
-		
-	}
-
-
-
-	public void onDisconnected() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public List<Geofence> locationsToGeoFence(Locations locations){
-		List<Geofence> geos = new ArrayList<Geofence>();
-		for (int i = 0; i < locations.num; i++) {
-			Log.d(MainActivity.tag, "Adding Locations to Geofence");
-			geos.add(new Geofence.Builder()
-            .setRequestId("GeoFence" +  Integer.toString(i) + "entering")
-            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER)
-            .setCircularRegion(locations.locs[i].latitude, locations.locs[i].longitude, locations.rad[i].floatValue())
-            .setExpirationDuration(Geofence.NEVER_EXPIRE)
-            .build());	
-			geos.add(new Geofence.Builder()
-            .setRequestId("GeoFence" +  Integer.toString(i) + "exiting")
-            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_EXIT)
-            .setCircularRegion(locations.locs[i].latitude, locations.locs[i].longitude, locations.rad[i].floatValue()+1)
-            .setExpirationDuration(Geofence.NEVER_EXPIRE)
-            .build());	
-		}
-		return geos;
 	}
 	
 }

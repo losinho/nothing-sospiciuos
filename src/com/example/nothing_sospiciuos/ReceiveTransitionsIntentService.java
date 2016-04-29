@@ -28,6 +28,8 @@ public class ReceiveTransitionsIntentService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
+		Log.d(MainActivity.tag, 
+				"GEo fence event recieved");
 		Context context = getApplicationContext();
 		appSharedPreferences = context.getSharedPreferences(MainActivity.PREFS_NAME, 0);
 		notiManager = new MyNotificationManager(context);
@@ -45,7 +47,7 @@ public class ReceiveTransitionsIntentService extends IntentService {
         
 		Log.d(MainActivity.tag, TAG + " transition type:" + Integer.toString(geofenceTransition));
 	 	Log.d(MainActivity.tag, TAG +" transition type:" + Boolean.toString(appState));
-	 	if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER && !appState)
+	 	if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER)
 	 	{
 			notiManager.createNotification(context);
 			devicePolicyManager.setCameraDisabled(mAdminName, true);

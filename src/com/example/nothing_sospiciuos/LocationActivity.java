@@ -55,7 +55,7 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, On
 	private Locations locations;
 	private GoogleApiClient mGoogleApiClient;
 	private LocationRequest mLocationRequest;
-	private Location mCurrentLocation;
+	private Location mCurrentLocation = new Location("me");
 
 	
 
@@ -64,6 +64,8 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, On
 		super.onCreate(savedInstanceState);
 		context = getApplicationContext() ;
 		try{
+			mCurrentLocation.setLatitude(31);
+			mCurrentLocation.setLongitude(34);
 			locations = new Locations(context, 1);
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 			location_service = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -82,7 +84,21 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, On
 	        mLocationRequest.setFastestInterval(10);
 			MapFragment mapFragment = (MapFragment) getFragmentManager()
 				    .findFragmentById(R.id.map);
-				mapFragment.getMapAsync(this);
+			mapFragment.getMapAsync(this);
+//			for (int i=1 ; i < locations.num ; i++){
+//				Geofence geo = new Geofence.Builder()
+//	            .setRequestId("GeoFence" +  Integer.toString(i))
+//	            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
+//	                    Geofence.GEOFENCE_TRANSITION_EXIT)
+//	            .setCircularRegion(clicked_Location.latitude, clicked_Location.longitude, clicked_Radius.floatValue())
+//	            .setExpirationDuration(Geofence.NEVER_EXPIRE)
+//	            .build();	
+//				LocationServices.GeofencingApi.addGeofences(
+//		                mGoogleApiClient,
+//		                getGeofencingRequest(geo),
+//		                getPendingIntent()
+//		        ).setResultCallback(this);
+//			}
 	    }
 		catch (Exception e) {
 			Log.e(MainActivity.tag, e.toString());
@@ -127,7 +143,7 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, On
 				LocationServices.GeofencingApi.addGeofences(
 		                mGoogleApiClient,
 		                getGeofencingRequest(geo),
-		                getPendingIntent(id)
+		                getPendingIntent()
 		        ).setResultCallback(this);
 				drawCircles();
 				circle.remove();
@@ -151,12 +167,13 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, On
 	public void deleteLocation(View view){
 		for (int i = 0; i < locations.num; i++) {
 			circles[i].remove();
-			LocationServices.GeofencingApi.removeGeofences(
-		            mGoogleApiClient,
-		            // This is the same pending intent that was used in addGeofences().
-		            getPendingIntent(i)
-		    ).setResultCallback(this); // Result processed in onResult().
+			
 		}
+		LocationServices.GeofencingApi.removeGeofences(
+	            mGoogleApiClient,
+	            // This is the same pending intent that was used in addGeofences().
+	            getPendingIntent()
+	    ).setResultCallback(this); // Result processed in onResult().
 		
 		circles =  new  Circle[10];
 		
@@ -224,7 +241,8 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, On
 	
 	 private boolean servicesConnected() {
 	        // Check that Google Play services is available
-	        int resultCode =
+	        @SuppressWarnings("deprecation")
+			int resultCode =
 	                GooglePlayServicesUtil.
 	                        isGooglePlayServicesAvailable(context);
 	        // If Google Play services is available
@@ -252,10 +270,10 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, On
 		// TODO Auto-generated method stub
 		
 	}
-	private PendingIntent getPendingIntent(int id)
+	private PendingIntent getPendingIntent()
 	{
 		Intent loc_intent = new Intent(context,ReceiveTransitionsIntentService.class);
-		PendingIntent pendingIntenLocationt =  PendingIntent.getService(context, id,
+		PendingIntent pendingIntenLocationt =  PendingIntent.getService(context, 0,
 				loc_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		return pendingIntenLocationt;
 	}
