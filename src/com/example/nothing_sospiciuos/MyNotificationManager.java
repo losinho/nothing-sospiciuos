@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.TaskStackBuilder;
@@ -24,7 +23,6 @@ public class MyNotificationManager{
 	public MyNotificationManager(Context context) {
 		mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);	
 		appSharedPreferences = context.getSharedPreferences(MainActivity.PREFS_NAME, 0);
-		setIcon_draw();
 		setDate();
 		setVersion();
 		setNotificationID(0);
@@ -36,13 +34,7 @@ public class MyNotificationManager{
 	public void setNotificationID(int notificationID) {
 		this.notificationID = notificationID;
 	}
-	public int getIcon_draw() {
-		return icon_draw;
-	}
-	public void setIcon_draw() {
-		this.icon_draw = appSharedPreferences.getInt(MainActivity.SH_PR_ICN_SIZE, com.example.nothing_sospiciuos.R.drawable.icon36);
-	}
-	public String getVersion() {
+		public String getVersion() {
 		return version;
 	}
 	public void setVersion() {
@@ -58,7 +50,6 @@ public class MyNotificationManager{
 		mNotificationManager.cancel(notificationID);
 	}
 	public void createNotification(Context context) {
-		setIcon_draw();
 		Bitmap largeIcon = BitmapFactory.decodeResource(context.getResources(),com.example.nothing_sospiciuos.R.drawable.largeicon);// .R.drawable.largeIcon);
         Notification noti = new Notification.Builder(context)
         .setContentText("מופעל בהתאם למיקום.גרסה " + getVersion())

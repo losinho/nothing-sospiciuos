@@ -20,11 +20,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.PopupMenu;
-import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -52,9 +49,9 @@ public class MainActivity extends Activity{
     Intent intent;
     TelephonyManager tm;
 
-    boolean notification;
+    //boolean notification;
     boolean appState;
-    int icon_draw;
+    //int icon_draw;
     MyNotificationManager notiManager;
     final Context context = MainActivity.this;
     public String versionMsg;
@@ -69,12 +66,12 @@ public class MainActivity extends Activity{
         appSharedPreferences = getSharedPreferences(PREFS_NAME, 0);
         setContentView(R.layout.activity_main);
         notiManager = new MyNotificationManager(context);
-        notification = appSharedPreferences.getBoolean(SH_PR_IS_NOTI, true);
+        //notification = appSharedPreferences.getBoolean(SH_PR_IS_NOTI, true);
         appState = appSharedPreferences.getBoolean(SH_PR_APP, false);
-        icon_draw = appSharedPreferences.getInt(SH_PR_ICN_SIZE, R.drawable.icon36);
+        //icon_draw = appSharedPreferences.getInt(SH_PR_ICN_SIZE, R.drawable.icon36);
         
         
-        final CheckBox cb = (CheckBox) findViewById(R.id.checkBoxnotification);
+        /*final CheckBox cb = (CheckBox) findViewById(R.id.checkBoxnotification);
         cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if (isChecked){
@@ -85,12 +82,12 @@ public class MainActivity extends Activity{
 				saveAll();
 			}
         }
-		);   
-        cb.setChecked(notification);
+		);  
+        cb.setChecked(notification);*/
         final ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton1);
 
-        setVersion(appSharedPreferences.getString(SH_PR_VER, "1.3"));
-        setUpdate(appSharedPreferences.getString(SH_PR_DATE, "20-10-12"));
+        /*setVersion(appSharedPreferences.getString(SH_PR_VER, "1.3"));
+        setUpdate(appSharedPreferences.getString(SH_PR_DATE, "20-10-12"));*/
 
         devicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         mAdminName = new ComponentName(this, DeviceAdminRec.class);   
@@ -105,11 +102,7 @@ public class MainActivity extends Activity{
 				if (state)
 				{
 					
-					if (isNotification())
-					{
-						notiManager.createNotification(context);
-						
-					}
+					notiManager.createNotification(context);
 					devicePolicyManager.setCameraDisabled(mAdminName, true);
 					Toast.makeText(context, "Camera disabled", Toast.LENGTH_SHORT).show();
 					appState = true;
@@ -127,33 +120,10 @@ public class MainActivity extends Activity{
         }
 		);
         saveAll();
-        if (isNotification() && appState)
-        {
-        	notiManager.createNotification(context);
-        	
-        	Log.i(tag, "creating notification at start");
-        	
-        }
-        else
-        {
-        	notiManager.clearNotification();
-        }
 
         
 	}
         	
-        
-
-	public boolean isNotification() {
-		return notification;
-	}
-
-
-
-	public void setNotification(boolean notification) {
-		this.notification = notification;
-	}
-
 
 	public void startDeviceAdmin()
 	{
@@ -185,14 +155,14 @@ public class MainActivity extends Activity{
 
 	
 	
-	public void ButtonOnClick(View v) {
+/*	public void ButtonOnClick(View v) {
 	    switch (v.getId()) {
 	      case R.id.adminDisableButton:
 	    	alertDialog();
 //	    	devicePolicyManager.removeActiveAdmin(mAdminName);
 	        break;
 	      }
-	}
+	}*/
 	
 	
     @Override
@@ -301,15 +271,15 @@ public class MainActivity extends Activity{
 	{
 		// We need an Editor object to make preference changes.
 	       SharedPreferences.Editor editor = appSharedPreferences.edit();
-	       editor.putBoolean(SH_PR_IS_NOTI, notification);
+	       //editor.putBoolean(SH_PR_IS_NOTI, notification);
 	       editor.putBoolean(SH_PR_APP, appState);
-	       editor.putInt(SH_PR_ICN_SIZE, icon_draw);
+	       //editor.putInt(SH_PR_ICN_SIZE, icon_draw);
 	       editor.putString(SH_PR_VER, fake_version);
 	       // Commit the edits!
 	       editor.commit();
 	}
 	
-	public void showPopup(View v) {
+/*	public void showPopup(View v) {
 	    PopupMenu popup = new PopupMenu(this, v);
 	    MenuInflater inflater = popup.getMenuInflater();
 	    inflater.inflate(R.menu.actions, popup.getMenu());
@@ -341,7 +311,7 @@ public class MainActivity extends Activity{
 	    );
 	    saveAll();
 	    
-	}
+	}*/
 	public void showAlertWindow(String msg)
 	{
 		AlertDialog.Builder ad = new AlertDialog.Builder(this);  

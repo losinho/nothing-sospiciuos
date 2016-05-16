@@ -1,44 +1,19 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="44dp"
-        android:contentDescription="@string/icon_size"
-        android:onClick="showPopup"
-        android:src="@drawable/icon_launcher"
-        android:visibility="invisible" />
-
     <ToggleButton
         android:id="@+id/toggleButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textOff="@string/toggle_off"
-        android:textOn="@string/toggle_on"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="50dp"
         android:background="@drawable/round_button"
-        android:layout_marginEnd="30dp" />
+        android:textOff="@string/toggle_off"
+        android:textOn="@string/toggle_on" />
 
-    <CheckBox
-        android:id="@+id/checkBoxnotification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginLeft="16dp"
-        android:visibility="invisible"
-        android:text="@string/checkboxText" />
-
-    <Button
-        android:id="@+id/adminDisableButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="ButtonOnClick"
-        android:text="@string/disable"
-        android:visibility="invisible" />
-
-</LinearLayout>
+</RelativeLayout>
