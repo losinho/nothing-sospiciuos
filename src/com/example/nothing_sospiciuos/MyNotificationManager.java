@@ -86,7 +86,7 @@ public class MyNotificationManager{
 	             );
 	     
 	    noti.contentIntent=resultPendingIntent;//setContentIntent(resultPendingIntent);
-	    noti.icon = icon_draw;
+	    noti.icon = com.example.nothing_sospiciuos.R.drawable.camera_icon;
         mNotificationManager.notify(notificationID, noti);
         Log.i(MainActivity.tag,"Notification Created");
 	}
